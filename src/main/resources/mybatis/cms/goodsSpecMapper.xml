@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper  namespace="com.xshop.project.cms.mapper.GoodsSpecMapper">
+    <sql id="table_columns">
+        id ,
+        goods_id as goodsId ,
+        goods_category_id as goodsCategoryId ,
+        style_num as styleNum,
+        norm,
+        size,
+        num,
+        img,
+        created,
+        updated
+    </sql>
+
+
+    <!--获取商品的规格列表-->
+    <select id="getGoodsSpec" resultType="com.xshop.project.cms.model.VO.GoodsSpecVO">
+        SELECT
+        <include refid="table_columns"/>
+        FROM t_goods_spec
+        where goods_id = #{goodsId}
+    </select>
+
+</mapper>

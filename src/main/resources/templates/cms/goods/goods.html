@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<link href="/xshop/css/xshop.css" th:href="@{/xshop/css/xshop.css}" rel="stylesheet"/>
+<link href="/ajax/libs/jquery-layout/jquery.layout-latest.css" th:href="@{/ajax/libs/jquery-layout/jquery.layout-latest.css}" rel="stylesheet"/>
+<link href="/ajax/libs/jquery-ztree/3.5/css/metro/zTreeStyle.css" th:href="@{/ajax/libs/jquery-ztree/3.5/css/metro/zTreeStyle.css}" rel="stylesheet"/>
+<body class="white-bg">
+	<div class="wrapper wrapper-content ui-layout-center">
+        <div class="btn-group hidden-xs" id="tableToolbar" role="group">
+        	<button type="button" class="btn btn-outline btn-default" th:onclick="'javascript:add()'" shiro:hasPermission="cms:goods:add">
+                <i class="glyphicon glyphicon-plus"></i>
+            </button>
+            <button type="button" class="btn btn-outline btn-default" th:onclick="'javascript:batchRemove()'" shiro:hasPermission="cms:goods:batchRemove">
+                <i class="glyphicon glyphicon-trash"></i>
+            </button>
+        </div>
+		<table class="bootstrap-table" data-mobile-responsive="true" 
+			   data-sort-name="create_time" data-sort-order="desc">
+		</table>
+	</div>
+	<div th:include="include :: footer"></div>
+	<script src="/xshop/cms/goods/goods.js" th:src="@{/xshop/cms/goods/goods.js}"></script>
+	<script src="/ajax/libs/jquery-layout/jquery.layout-latest.js" th:src="@{/ajax/libs/jquery-layout/jquery.layout-latest.js}"></script>
+	<script src="/ajax/libs/jquery-ztree/3.5/js/jquery.ztree.all-3.5.js" th:src="@{/ajax/libs/jquery-ztree/3.5/js/jquery.ztree.all-3.5.js}"></script>
+	<script th:inline="javascript">
+		var editFlag = [[${@permissionService.hasPermi('cms:goods:edit')}]];
+		var removeFlag = [[${@permissionService.hasPermi('cms:goods:remove')}]];
+		var upFrameFlag = [[${@permissionService.hasPermi('cms:goods:upframe')}]];
+        var unFrameFlag = [[${@permissionService.hasPermi('cms:goods:unframe')}]];
+	</script>
+</body>
+</html>

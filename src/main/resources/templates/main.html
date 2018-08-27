@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--360浏览器优先以webkit内核解析-->
+    <title>xshop介绍</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link href="../static/css/font-awesome.min.css" th:href="@{/css/font-awesome.css}" rel="stylesheet"/>
+    <link href="../static/css/main/animate.min.css" th:href="@{/css/main/animate.min.css}" rel="stylesheet"/>
+    <link href="../static/css/main/style.min862f.css" th:href="@{/css/main/style.min862f.css}" rel="stylesheet"/>
+</head>
+
+<body class="gray-bg">
+    <div class="row  border-bottom white-bg dashboard-header">
+        <div class="col-sm-12">
+            <blockquote class="text-warning" style="font-size:14px">
+                xshop是一个后台管理框架，包括商品管理，购物车管理，订单管理，会员管理，店铺管理，系统管理，系统监控等模块。
+
+            </blockquote>
+
+            <hr>
+        </div>
+        <div class="col-sm-5">
+            <h2>xshop后台管理框架</h2>
+            <p>
+                xshop后台管理框架包含了电商后台的基本模块，现在框架搭建完成，实现的功能不多，很多功能还在开发中。
+            </p>
+            <p>
+                <b>当前版本：</b><span>v[[${version}]]</span>
+            </p>
+            <p>
+                <span class="label label-warning">免费开源</span>
+            </p>
+            <br>
+            <p>
+            </p>
+        </div>
+        <div class="col-sm-4">
+            <h4>技术选型：</h4>
+            <ol>
+                <li>核心框架：Spring Boot。</li>
+                <li>安全框架：Apache Shiro。</li>
+                <li>模板引擎：Thymeleaf。</li>
+                <li>持久层框架：MyBatis。</li>
+				<li>定时任务:Quartz。</li>
+                <li>数据库连接池：Druid。</li>
+                <li>图片存储：七牛。</li>
+                <li>工具类：Fastjson。</li>
+                <li>更多……</li>
+            </ol>
+        </div>
+
+    </div>
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-4">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>更新日志</h5>
+                    </div>
+                    <div class="ibox-content no-padding">
+                        <div class="panel-body">
+                            <div class="panel-group" id="version">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#version" href="#v00">v0.0.1</a><code class="pull-right">2018.08.27</code>
+                                        </h4>
+                                    </div>
+                                    <div id="v00" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ol>
+                                                <li>xshop管理系统正式发布。</li>
+                                                <li>用户管理（增删查改）。</li>
+                                                <li>权限管理。</li>
+                                                <li>菜单管理。</li>
+                                                <li>监控、日志管理。</li>
+                                                <li>商品管理。</li>
+                                                <li>七牛图片上传。</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+    <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

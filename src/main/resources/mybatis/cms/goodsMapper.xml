@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper  namespace="com.xshop.project.cms.mapper.GoodsMapper">
+
+    <sql id="table_columns">
+        id ,
+        name ,
+        title ,
+        old_price as oldPrice,
+        price,
+        lower_price as lowerPrice,
+        discount,
+        unit,
+        sales_num as salesNum,
+        stock_num as stockNum,
+        barcode,
+        small_pic as smallPic,
+        pic_one as picOne,
+        pic_two as picTwo,
+        pic_three as picThree,
+        pic_four as picFour,
+        pic_five as picFive,
+        first_cid as firstCid,
+        sub_cid as subCid,
+        third_cid as thirdCid,
+        status,
+        create_time as createTime,
+        update_time as updateTime
+    </sql>
+
+
+    <!--获取商品列表-->
+    <select id="selectGoodsList" parameterType="com.xshop.project.cms.model.Goods" resultType="com.xshop.project.cms.model.Goods">
+        SELECT
+        <include refid="table_columns"/>
+        FROM t_goods
+        where 1 = 1
+        <where>
+            <if test="goods.firstCid != null and goods.firstCid != ''">
+                AND first_cid  = #{goods.firstCid}
+            </if>
+            <if test="goods.subCid != null and goods.subCid != ''">
+                AND sub_cid  = #{goods.subCid}
+            </if>
+            <if test="goods.thirdCid != null and goods.thirdCid != ''">
+                AND third_cid  = #{goods.thirdCid}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+
+    <!--获取商品三级分类下的商品列表-->
+    <select id="getGoodsByCategory" resultType="com.xshop.project.cms.model.VO.GoodsListVO">
+        SELECT
+        <include refid="table_columns"/>
+        FROM t_goods
+        where status = 1 and stock_num > 0 and third_cid = #{categroyId} order by sales_num desc
+    </select>
+
+    <!--获取商品三级分类下的商品列表-->
+    <select id="getGoodsInfo" resultType="com.xshop.project.cms.model.VO.GoodsVO">
+        SELECT
+        <include refid="table_columns"/>
+        FROM t_goods
+        where status = 1 and id = #{goodsId}
+    </select>
+
+    <!--获取销量前十的商品列表-->
+    <select id="getSalesGoods" resultType="com.xshop.project.cms.model.VO.GoodsListVO">
+        SELECT
+        <include refid="table_columns"/>
+        FROM t_goods
+        where status = 1 order by sales_num desc limit 10
+    </select>
+
+    <!--获取最新上架的10商品列表-->
+    <select id="getNewGoods" resultType="com.xshop.project.cms.model.VO.GoodsListVO">
+        SELECT
+        <include refid="table_columns"/>
+        FROM t_goods
+        where status = 1 order by create_time desc limit 10
+    </select>
+</mapper>
