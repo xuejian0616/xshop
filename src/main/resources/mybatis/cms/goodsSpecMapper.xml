@@ -11,8 +11,8 @@
         size,
         num,
         img,
-        created,
-        updated
+        create_time as createTime,
+        update_time as updateTime
     </sql>
 
 
