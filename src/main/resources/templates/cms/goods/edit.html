@@ -8,84 +8,81 @@
 <body class="white-bg">
 	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
 		<form class="form-horizontal m" id="form-goods-edit">
-			<input name="goodsId"  type="hidden"  th:value="${goods.goodsId}" />
-			<div class="form-group">
-				<label class="col-sm-3 control-label ">登录名称：</label>
-				<div class="col-sm-8">
-					<input class="form-control" type="text" readonly="true" th:value="${goods.loginName}"/>
-				</div>
-			</div>
+			<input name="goodsId"  type="hidden"  th:value="${goods.id}" />
+            <input name="goodsId"  type="hidden"  th:value="${goods.id}" />
+            <input name="goodsId"  type="hidden"  th:value="${goods.id}" />
+            <input name="goodsId"  type="hidden"  th:value="${goods.id}" />
 			<div class="form-group">
 				<label class="col-sm-3 control-label ">商品名：</label>
 				<div class="col-sm-8">
-					<input class="form-control" type="text" id="goodsName" name="name"/>
+					<input class="form-control" type="text" id="goodsName" name="name" th:value="${goods.name}"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label ">商品标题：</label>
 				<div class="col-sm-8">
-					<input class="form-control" type="text" id="goodsTitle" name="title"/>
+					<input class="form-control" type="text" id="goodsTitle" name="title" th:value="${goods.title}"/>
 				</div>
 			</div>
 			<div class="form-group">
-				<input type="hidden" id="categoryId" name="categoryId" >
+				<input type="hidden" id="categoryId" name="categoryId" th:value="${goods.categoryId}">
 				<label class="col-sm-3 control-label">分类：</label>
 				<div class="col-sm-8">
-					<input class="form-control" type="text" name="categoryName" onclick="categoryTree()" readonly="true" id="categoryName">
+					<input class="form-control" type="text" name="categoryName" onclick="categoryTree()" readonly="true" id="categoryName"  th:value="${goods.categoryName}">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">原价：</label>
 				<div class="col-sm-8">
-					<input class="form-control" type="text" name="oldPrice" id="oldPrice">
+					<input class="form-control" type="text" name="oldPrice" id="oldPrice" th:value="${goods.oldPrice}">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">现价：</label>
 				<div class="col-sm-8">
-					<input class="form-control" type="text" name="price" id="price">
+					<input class="form-control" type="text" name="price" id="price" th:value="${goods.price}">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">最低价：</label>
 				<div class="col-sm-8">
-					<input class="form-control" type="text" name="lowerPrice" id="lowerPrice">
+					<input class="form-control" type="text" name="lowerPrice" id="lowerPrice" th:value="${goods.lowerPrice}">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">折扣（0~1）：</label>
 				<div class="col-sm-8">
-					<input class="form-control" type="text" name="discount" id="discount">
+					<input class="form-control" type="text" name="discount" id="discount" th:value="${goods.discount}">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">单位：</label>
 				<div class="col-sm-8">
-					<input class="form-control" type="text" name="unit" id="unit">
+					<input class="form-control" type="text" name="unit" id="unit" th:value="${goods.unit}">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">条码：</label>
 				<div class="col-sm-8">
-					<input class="form-control" type="text" name="barcode" id="barcode">
+					<input class="form-control" type="text" name="barcode" id="barcode" th:value="${goods.barcode}">
 				</div>
 			</div>
 			<div class="form-group">
-				<input type="hidden" id="smallPic" name="smallPic" >
+				<input type="hidden" id="smallPic" name="smallPic" th:value="${goods.smallPic}" >
 				<label class="col-sm-3 control-label">小图：</label>
 				<input class="file-input qiniuUp" type="file" id="small" inputId="smallPic" imgId="smallPicImg" text="选择小图"/>
 				<div class="col-sm-8">
 					<div class="radio radio-info radio-inline">
-						<img src="/img/webuploader.png" width="auto" height="80px" id = "smallPicImg">
+						<img th:src="${goods.smallPic}" width="auto" height="80px" id = "smallPicImg">
 					</div>
 				</div>
 			</div>
 			<div class="form-group">
-				<input type="hidden" id="picOne" name="picOne" >
-				<input type="hidden" id="picTwo" name="picTwo" >
-				<input type="hidden" id="picThree" name="picThree" >
-				<input type="hidden" id="picFour" name="picFour" >
-				<input type="hidden" id="picFive" name="picFive" >
+				<input type="hidden" id="picOne" name="picOne"  th:value="${goods.picOne}">
+				<input type="hidden" id="picTwo" name="picTwo"  th:value="${goods.picTwo}">
+				<input type="hidden" id="picThree" name="picThree"  th:value="${goods.picThree}">
+				<input type="hidden" id="picFour" name="picFour"  th:value="${goods.picFour}">
+				<input type="hidden" id="picFive" name="picFive"  th:value="${goods.picFive}">
 				<label class="col-sm-3 control-label">主图：</label>
 				<input class="file-input qiniuUp" style="width: 150px; display:inline;" type="file" id="one" inputId="picOne" imgId="onePicImg" text="主图一"/>
 				<input class="file-input qiniuUp" style="width: 150px; display:inline;" type="file" id="two" inputId="picTwo" imgId="twoPicImg" text="主图二"/>
@@ -94,28 +91,14 @@
 				<input class="file-input qiniuUp" style="width: 150px; display:inline;" type="file" id="five" inputId="picFive" imgId="fivePicImg" text="主图五"/>
 				<div class="col-sm-8">
 					<div class="radio radio-info radio-inline">
-						<img src="/img/webuploader.png" width="auto" height="80px" id = "onePicImg">
-						<img src="/img/webuploader.png" width="auto" height="80px" id = "twoPicImg">
-						<img src="/img/webuploader.png" width="auto" height="80px" id = "threePicImg">
-						<img src="/img/webuploader.png" width="auto" height="80px" id = "fourPicImg">
-						<img src="/img/webuploader.png" width="auto" height="80px" id = "fivePicImg">
+						<img th:src="${goods.picOne}" width="auto" height="80px" id = "onePicImg">
+						<img th:src="${goods.picTwo}" width="auto" height="80px" id = "twoPicImg">
+						<img th:src="${goods.picThree}" width="auto" height="80px" id = "threePicImg">
+						<img th:src="${goods.picFour}" width="auto" height="80px" id = "fourPicImg">
+						<img th:src="${goods.picFive}" width="auto" height="80px" id = "fivePicImg">
 					</div>
 				</div>
 			</div>
-
-
-			<!--<div class="form-group">
-				<label class="col-sm-3 control-label">状态：</label>
-				<div class="col-sm-8">
-					<div class="onoffswitch">
-                         <input type="checkbox" th:checked="true" class="onoffswitch-checkbox" id="status" name="status">
-                         <label class="onoffswitch-label" for="status">
-                             <span class="onoffswitch-inner"></span>
-                             <span class="onoffswitch-switch"></span>
-                         </label>
-                     </div>
-				</div>
-			</div>-->
 			<div class="form-group">
 				<label class="col-sm-3 control-label">规格：</label>
 				<div class="col-sm-9">
@@ -135,6 +118,16 @@
 						</tr>
 						</thead>
 						<tbody>
+                            <th:block th:each="spec,iterStat:${goods.goodsSpec}">
+                                <th><input type="text" style="width: 70px" id="goodsSpec[${iterStat.index}].norm" name="goodsSpec[${iterStat.index}].norm" value="${spec.norm}" ></th>
+                                <th><input type="text" style="width: 70px" id="goodsSpec[${iterStat.index}].size" name="goodsSpec[${iterStat.index}].size" value="${spec.size}" ></th>
+                                <th><input type="text" style="width: 70px" id="goodsSpec[${iterStat.index}].num" name="goodsSpec[${iterStat.index}].num" value="${spec.num}" ></th>
+                                <th><input type="text" style="width: 70px" id="goodsSpec[${iterStat.index}].styleNum" name="goodsSpec[${iterStat.index}].styleNum" value="${spec.styleNum}" ></th>
+                                <th><input type="text" style="width: 70px" id="goodsSpec[${iterStat.index}].barcode" name="goodsSpec[${iterStat.index}].barcode" value="${spec.barcode}" ></th>
+                                <th><input type="hidden" id="goodsSpec[${iterStat.index}].img" name="goodsSpec[${iterStat.index}].img" value="${spec.img}" >
+                                <img th:src="${spec.img}" width="auto" height="70px" id = "specPic${iterStat.index}"></th>
+                                <th><input class="file-input qiniuUp" style="width: 70px" type="file" id="specFile${iterStat.index}" inputId="goodsSpec[${iterStat.index}].img" imgId="specPic${iterStat.index}" text="规格图"  onchange="qiniuUpImg(this)"/></th>
+                            </th:block>
 						</tbody>
 					</table>
 				</div>
@@ -144,7 +137,7 @@
 				<input type="hidden" id="goodsDesc" name="goodsDesc" >
 				<div class="ibox-content no-padding">
 					<div class="summernote" id="summernote" name="summernote">
-
+                        ${goods.goodsDesc}
 					</div>
 				</div>
 			</div>

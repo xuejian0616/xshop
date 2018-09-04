@@ -55,4 +55,6 @@ public class GoodsVO {
   private String goodsDesc;
   @ApiModelProperty(value = "商品分类")
   private String categoryId;
+  @ApiModelProperty(value = "分类名称")
+  private String categoryName;
 }
