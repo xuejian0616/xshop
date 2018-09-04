@@ -1,5 +1,6 @@
 package com.xshop.project.cms.controller;
 
+import com.xshop.common.exception.base.BaseException;
 import com.xshop.framework.aspectj.lang.annotation.Log;
 import com.xshop.framework.web.controller.BaseController;
 import com.xshop.framework.web.domain.Message;
@@ -56,11 +57,9 @@ public class CmsGoodsController extends BaseController {
     @RequiresPermissions("cms:goods:edit")
     @Log(title = "商品管理", action = "商品管理-修改商品")
     @GetMapping("/edit/{goodsId}")
-    public String edit(@PathVariable("goodsId") Long goodsId, Model model) {
-//        User user = userService.selectUserById(userId);
-//        List<Role> roles = roleService.selectRolesByUserId(userId);
-//        model.addAttribute("roles", roles);
-//        model.addAttribute("user", user);
+    public String edit(@PathVariable("goodsId") int goodsId, Model model) {
+        GoodsVO goods = cmsGoodsService.getGoodsById(goodsId);
+        model.addAttribute("goods", goods);
         return prefix + "/edit";
     }
     /**
@@ -84,8 +83,11 @@ public class CmsGoodsController extends BaseController {
     @Transactional(rollbackFor = Exception.class)
     @ResponseBody
     public Message save(GoodsVO goodsVO) {
-        cmsGoodsService.saveGoods(goodsVO);
-
-        return Message.error();
+        try {
+            cmsGoodsService.saveGoods(goodsVO);
+            return Message.success();
+        }catch (Exception e){
+            throw new BaseException(prefix,e.getMessage());
+        }
     }
 }

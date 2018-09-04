@@ -7,78 +7,145 @@
 <link href="/xshop/css/xshop.css" th:href="@{/xshop/css/xshop.css}" rel="stylesheet"/>
 <body class="white-bg">
 	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
-		<form class="form-horizontal m" id="form-user-edit">
-			<input name="userId"  type="hidden"  th:value="${user.userId}" />
+		<form class="form-horizontal m" id="form-goods-edit">
+			<input name="goodsId"  type="hidden"  th:value="${goods.goodsId}" />
 			<div class="form-group">
 				<label class="col-sm-3 control-label ">登录名称：</label>
 				<div class="col-sm-8">
-					<input class="form-control" type="text" readonly="true" th:value="${user.loginName}"/>
-				</div>
-			</div>
-			<!--<div class="form-group">
-				<label class="col-sm-3 control-label">部门名称：</label>
-				<div class="col-sm-8">
-					<input class="form-control" type="text" name="deptName" onclick="selectDeptTree()" readonly="true" id="treeName" th:value="${user.dept.deptName}">
-				</div>
-			</div>-->
-			<div class="form-group">
-				<label class="col-sm-3 control-label">用户名称：</label>
-				<div class="col-sm-8">
-					<input class="form-control" type="text" name="userName" id="userName" th:value="${user.userName}">
+					<input class="form-control" type="text" readonly="true" th:value="${goods.loginName}"/>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label">邮箱：</label>
+				<label class="col-sm-3 control-label ">商品名：</label>
 				<div class="col-sm-8">
-					<input class="form-control" type="text" name="email" id="email" th:value="${user.email}">
+					<input class="form-control" type="text" id="goodsName" name="name"/>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label">手机：</label>
+				<label class="col-sm-3 control-label ">商品标题：</label>
 				<div class="col-sm-8">
-					<input class="form-control" type="text" name="phonenumber" id="phonenumber" th:value="${user.phonenumber}">
+					<input class="form-control" type="text" id="goodsTitle" name="title"/>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label">性别：</label>
+				<input type="hidden" id="categoryId" name="categoryId" >
+				<label class="col-sm-3 control-label">分类：</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="categoryName" onclick="categoryTree()" readonly="true" id="categoryName">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">原价：</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="oldPrice" id="oldPrice">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">现价：</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="price" id="price">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">最低价：</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="lowerPrice" id="lowerPrice">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">折扣（0~1）：</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="discount" id="discount">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">单位：</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="unit" id="unit">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">条码：</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="barcode" id="barcode">
+				</div>
+			</div>
+			<div class="form-group">
+				<input type="hidden" id="smallPic" name="smallPic" >
+				<label class="col-sm-3 control-label">小图：</label>
+				<input class="file-input qiniuUp" type="file" id="small" inputId="smallPic" imgId="smallPicImg" text="选择小图"/>
 				<div class="col-sm-8">
 					<div class="radio radio-info radio-inline">
-						<input type="radio" id="radio1" th:field="*{user.sex}" name="sex" value="0">
-						<label for="radio1">男</label>
-					</div>
-					<div class="radio radio-danger radio-inline">
-						<input type="radio" id="radio2" th:field="*{user.sex}" name="sex" value="1">
-						<label for="radio2">女</label>
+						<img src="/img/webuploader.png" width="auto" height="80px" id = "smallPicImg">
 					</div>
 				</div>
 			</div>
 			<div class="form-group">
+				<input type="hidden" id="picOne" name="picOne" >
+				<input type="hidden" id="picTwo" name="picTwo" >
+				<input type="hidden" id="picThree" name="picThree" >
+				<input type="hidden" id="picFour" name="picFour" >
+				<input type="hidden" id="picFive" name="picFive" >
+				<label class="col-sm-3 control-label">主图：</label>
+				<input class="file-input qiniuUp" style="width: 150px; display:inline;" type="file" id="one" inputId="picOne" imgId="onePicImg" text="主图一"/>
+				<input class="file-input qiniuUp" style="width: 150px; display:inline;" type="file" id="two" inputId="picTwo" imgId="twoPicImg" text="主图二"/>
+				<input class="file-input qiniuUp" style="width: 150px; display:inline;" type="file" id="three" inputId="picThree" imgId="threePicImg" text="主图三"/>
+				<input class="file-input qiniuUp" style="width: 150px; display:inline;" type="file" id="four" inputId="picFour" imgId="fourPicImg" text="主图四"/>
+				<input class="file-input qiniuUp" style="width: 150px; display:inline;" type="file" id="five" inputId="picFive" imgId="fivePicImg" text="主图五"/>
+				<div class="col-sm-8">
+					<div class="radio radio-info radio-inline">
+						<img src="/img/webuploader.png" width="auto" height="80px" id = "onePicImg">
+						<img src="/img/webuploader.png" width="auto" height="80px" id = "twoPicImg">
+						<img src="/img/webuploader.png" width="auto" height="80px" id = "threePicImg">
+						<img src="/img/webuploader.png" width="auto" height="80px" id = "fourPicImg">
+						<img src="/img/webuploader.png" width="auto" height="80px" id = "fivePicImg">
+					</div>
+				</div>
+			</div>
+
+
+			<!--<div class="form-group">
 				<label class="col-sm-3 control-label">状态：</label>
 				<div class="col-sm-8">
 					<div class="onoffswitch">
-                         <input type="checkbox" th:checked="${user.status == 0 ? true : false}" class="onoffswitch-checkbox" id="status" name="status">
+                         <input type="checkbox" th:checked="true" class="onoffswitch-checkbox" id="status" name="status">
                          <label class="onoffswitch-label" for="status">
                              <span class="onoffswitch-inner"></span>
                              <span class="onoffswitch-switch"></span>
                          </label>
                      </div>
 				</div>
-			</div>
+			</div>-->
 			<div class="form-group">
-				<label class="col-sm-3 control-label">岗位：</label>
-				<div class="col-sm-8">
-					<select id="post" name="post" class="form-control select2-hidden-accessible" multiple="">
-						<option th:each="post:${posts}" th:value="${post.postId}" th:text="${post.postName}" th:selected="${post.flag}"></option>
-					</select>
-					
+				<label class="col-sm-3 control-label">规格：</label>
+				<div class="col-sm-9">
+					<div class="">
+						<a onclick="fnClickAddRow();" href="javascript:void(0);" class="btn btn-primary ">添加行</a>
+					</div>
+					<table class="table table-striped table-bordered table-hover " style="width: 100%" id="editable">
+						<thead>
+						<tr>
+							<th style="width: 70px">颜色</th>
+							<th style="width: 70px">尺码</th>
+							<th style="width: 70px">数量</th>
+							<th style="width: 70px">编码</th>
+							<th style="width: 70px">条形码</th>
+							<th style="width: 70px">图片</th>
+							<th style="width: 70px">选择图片</th>
+						</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label">角色：</label>
-				<div class="col-sm-8">
-					<label th:each="role:${roles}" class="checkbox-inline i-checks">
-						<input name="role" type="checkbox" th:value="${role.roleId}" th:text="${role.roleName}" th:checked="${role.flag}">
-					</label>
+				<label class="col-sm-3 control-label">商品详情：</label>
+				<input type="hidden" id="goodsDesc" name="goodsDesc" >
+				<div class="ibox-content no-padding">
+					<div class="summernote" id="summernote" name="summernote">
+
+					</div>
 				</div>
 			</div>
 			
@@ -91,7 +158,7 @@
 		</form>
 	</div>
 	<div th:include="include::footer"></div>
-	<script src="/xshop/system/user/edit.js" th:src="@{/xshop/system/user/edit.js}">
+	<script src="/xshop/system/goods/edit.js" th:src="@{/xshop/system/goods/edit.js}">
 	</script>
 	<script src="/ajax/libs/iCheck/icheck.min.js" th:src="@{/ajax/libs/iCheck/icheck.min.js}"></script>
 	<script src="/ajax/libs/select/select2.js" th:src="@{/ajax/libs/select/select2.js}"></script>

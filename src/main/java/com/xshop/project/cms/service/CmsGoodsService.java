@@ -23,6 +23,15 @@ public interface CmsGoodsService {
      */
     public List<Goods> selectGoodsList(Goods goods);
 
+
+    /**
+     * 根据条件分页查询商品对象
+     *
+     * @param goodsId 商品ID
+     * @return 商品信息集合信息
+     */
+    public GoodsVO getGoodsById(int goodsId);
+
     /**
      * 保存商品信息
      * @return 修改的商品数量

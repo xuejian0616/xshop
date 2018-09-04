@@ -86,9 +86,6 @@ public class GoodsServiceImpl implements GoodsService {
         GoodsVO goodsVO = goodsMapper.getGoodsInfo(goodsId);
 
         if(!Objects.isNull(goodsVO)){
-//            List<GoodsSpecVO> goodsSpec = goodsParamMapper.getGoodsSpec(goodsId);
-//            goodsVO.setGoodsSpec(goodsSpec);
-
             List<String> imges = new ArrayList<>();
             if(!Objects.isNull(goodsVO.getPicOne())){
                 imges.add(goodsVO.getPicOne());

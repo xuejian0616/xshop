@@ -61,7 +61,7 @@
         where status = 1 and stock_num > 0 and third_cid = #{categroyId} order by sales_num desc
     </select>
 
-    <!--获取商品三级分类下的商品列表-->
+    <!--获取商品信息-->
     <select id="getGoodsInfo" resultType="com.xshop.project.cms.model.VO.GoodsVO">
         SELECT
         <include refid="table_columns"/>

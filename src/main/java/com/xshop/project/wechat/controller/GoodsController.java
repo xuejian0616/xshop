@@ -37,8 +37,8 @@ public class GoodsController {
 
     @ApiOperation(value = "根据商品id获取商品详情", notes = "根据商品id获取商品详情",httpMethod = "GET")
     @ApiImplicitParams({@ApiImplicitParam(name = "goodsId", paramType = "query", dataType = "Integer", value = "商品id")})
-    @GetMapping(value = "/getGoodsInfo")
-    public GoodsVO getGoodsInfo(String goodsId){
+    @GetMapping(value = "/getGoodsInfo/{goodsId}")
+    public GoodsVO getGoodsInfo(@PathVariable String goodsId){
 
         return goodsService.getGoodsInfo(Integer.parseInt(goodsId));
     }

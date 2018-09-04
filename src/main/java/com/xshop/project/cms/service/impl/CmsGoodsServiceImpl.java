@@ -14,12 +14,14 @@ import com.xshop.project.cms.model.VO.GoodsSpecListVO;
 import com.xshop.project.cms.model.VO.GoodsSpecVO;
 import com.xshop.project.cms.model.VO.GoodsVO;
 import com.xshop.project.cms.service.CmsGoodsService;
+import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class CmsGoodsServiceImpl implements CmsGoodsService {
@@ -49,6 +51,40 @@ public class CmsGoodsServiceImpl implements CmsGoodsService {
     }
 
 
+    /**
+     * 根据条件分页查询商品对象
+     *
+     * @param goodsId 商品ID
+     * @return 商品信息集合信息
+     */
+    public GoodsVO getGoodsById(int goodsId){
+        GoodsVO goodsVO = new GoodsVO();
+        //获取商品基本信息
+        Goods goods = goodsMapper.selectByPrimaryKey(goodsId);
+        if(!Objects.isNull(goods)){
+            goodsVO = (GoodsVO)CopyUtil.populate(goods,goodsVO);
+
+            //获取商品详情
+            GoodsDesc goodsDesc = new GoodsDesc();
+            goodsDesc.setGoodsId(goodsId);
+            goodsDesc = goodsDescMapper.selectOne(goodsDesc);
+            if(!Objects.isNull(goodsDesc)){
+                goodsVO.setGoodsDesc(goodsDesc.getGoodsDesc());
+            }else{
+                goodsVO.setGoodsDesc("");
+            }
+
+            //获取商品规格
+            List<GoodsSpecVO> goodsSpecs = goodsSpecMapper.getGoodsSpec(goodsId);
+            if(CollectionUtils.isNotEmpty(goodsSpecs)){
+                goodsVO.setGoodsSpec(goodsSpecs);
+            }else {
+                goodsVO.setGoodsSpec(new ArrayList<GoodsSpecVO>());
+            }
+        }
+
+        return goodsVO;
+    }
 
     /**
      * 保存商品信息

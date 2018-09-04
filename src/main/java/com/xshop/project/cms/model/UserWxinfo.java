@@ -15,6 +15,21 @@ public class UserWxinfo {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
   private Integer id;
+  @ApiModelProperty(value = "登录名")
+  @Column(name = "user_name")
+  private String userName;
+  @ApiModelProperty(value = "密码")
+  @Column(name = "password")
+  private String password;
+  @ApiModelProperty(value = "用户token")
+  @Column(name = "token")
+  private String token;
+  @ApiModelProperty(value = "email")
+  @Column(name = "email")
+  private String email;
+  @ApiModelProperty(value = "phone")
+  @Column(name = "phone")
+  private String phone;
   @ApiModelProperty(value = "openId")
   @Column(name = "open_id")
   private String openId;
