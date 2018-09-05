@@ -119,14 +119,16 @@
 						</thead>
 						<tbody>
                             <th:block th:each="spec,iterStat:${goods.goodsSpec}">
-                                <th><input type="text" style="width: 70px" id="goodsSpec[${iterStat.index}].norm" name="goodsSpec[${iterStat.index}].norm" value="${spec.norm}" ></th>
-                                <th><input type="text" style="width: 70px" id="goodsSpec[${iterStat.index}].size" name="goodsSpec[${iterStat.index}].size" value="${spec.size}" ></th>
-                                <th><input type="text" style="width: 70px" id="goodsSpec[${iterStat.index}].num" name="goodsSpec[${iterStat.index}].num" value="${spec.num}" ></th>
-                                <th><input type="text" style="width: 70px" id="goodsSpec[${iterStat.index}].styleNum" name="goodsSpec[${iterStat.index}].styleNum" value="${spec.styleNum}" ></th>
-                                <th><input type="text" style="width: 70px" id="goodsSpec[${iterStat.index}].barcode" name="goodsSpec[${iterStat.index}].barcode" value="${spec.barcode}" ></th>
-                                <th><input type="hidden" id="goodsSpec[${iterStat.index}].img" name="goodsSpec[${iterStat.index}].img" value="${spec.img}" >
-                                <img th:src="${spec.img}" width="auto" height="70px" id = "specPic${iterStat.index}"></th>
-                                <th><input class="file-input qiniuUp" style="width: 70px" type="file" id="specFile${iterStat.index}" inputId="goodsSpec[${iterStat.index}].img" imgId="specPic${iterStat.index}" text="规格图"  onchange="qiniuUpImg(this)"/></th>
+                            <tr>
+                                <th><input type="text" style="width: 70px" th:id="${'goodsSpec['+iterStat.index+'].norm'}" th:name="${'goodsSpec['+iterStat.index+'].norm'}" th:value="${spec.norm}" ></th>
+                                <th><input type="text" style="width: 70px" th:id="${'goodsSpec['+iterStat.index+'].size'}" th:name="${'goodsSpec['+iterStat.index+'].size'}" th:value="${spec.size}" ></th>
+                                <th><input type="text" style="width: 70px" th:id="${'goodsSpec['+iterStat.index+'].num'}" th:name="${'goodsSpec['+iterStat.index+'].num'}" th:value="${spec.num}" ></th>
+                                <th><input type="text" style="width: 70px" th:id="${'goodsSpec['+iterStat.index+'].styleNum'}" th:name="${'goodsSpec['+iterStat.index+'].styleNum'}" th:value="${spec.styleNum}" ></th>
+                                <th><input type="text" style="width: 70px" th:id="${'goodsSpec['+iterStat.index+'].barcode'}" th:name="${'goodsSpec['+iterStat.index+'].barcode'}" th:value="${spec.barcode}" ></th>
+                                <th><input type="hidden" th:id="${'goodsSpec['+iterStat.index+'].img'}" th:name="${'goodsSpec['+iterStat.index+'].img'}" th:value="${spec.img}" >
+                                <img th:src="${spec.img}" width="auto" height="70px" th:id = "${'specPic'+iterStat.index}"></th>
+                                <th><input class="file-input qiniuUp" style="width: 70px" type="file" th:id="${'specFile'+iterStat.index}" th:inputId="${'goodsSpec['+iterStat.index+'].img'}" th:imgId="${'specPic'+iterStat.index}" text="规格图"  onchange="qiniuUpImg(this)"/></th>
+                            </tr>
                             </th:block>
 						</tbody>
 					</table>
@@ -136,8 +138,8 @@
 				<label class="col-sm-3 control-label">商品详情：</label>
 				<input type="hidden" id="goodsDesc" name="goodsDesc" >
 				<div class="ibox-content no-padding">
-					<div class="summernote" id="summernote" name="summernote">
-                        ${goods.goodsDesc}
+					<div class="summernote" id="summernote" name="summernote" th:text="${goods.goodsDesc}">
+
 					</div>
 				</div>
 			</div>

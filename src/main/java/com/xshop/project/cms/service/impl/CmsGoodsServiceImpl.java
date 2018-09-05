@@ -64,6 +64,18 @@ public class CmsGoodsServiceImpl implements CmsGoodsService {
         if(!Objects.isNull(goods)){
             goodsVO = (GoodsVO)CopyUtil.populate(goods,goodsVO);
 
+            GoodsCategory goodsCategory = new GoodsCategory();
+            String thirdCid = goodsVO.getThirdCid();
+            String subCid = goodsVO.getSubCid();
+            if(!Objects.isNull(thirdCid)){
+                goodsCategory = goodsCategoryMapper.selectByPrimaryKey(thirdCid);
+            }else if(!Objects.isNull(subCid)){
+                goodsCategory = goodsCategoryMapper.selectByPrimaryKey(subCid);
+            }else{
+                goodsCategory = goodsCategoryMapper.selectByPrimaryKey(goodsVO.getFirstCid());
+            }
+            goodsVO.setCategoryName(goodsCategory.getName());
+
             //获取商品详情
             GoodsDesc goodsDesc = new GoodsDesc();
             goodsDesc.setGoodsId(goodsId);

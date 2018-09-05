@@ -13,6 +13,10 @@ function querygoodsList() {
 	var columns = [{
 		checkbox: true
         }, {
+			field: 'id',
+			title: '商品id',
+			visible: false
+		}, {
 			field: 'img',
 			title: '商品小图',
 			formatter: function(value,row,index){
@@ -103,21 +107,21 @@ function querygoodsList() {
             formatter: function(value, row, index) {
                 if(row.status == '0') {
                     var actions = [];
-                    actions.push('<a class="btn btn-primary btn-sm ' + editFlag + '" href="#" title="编辑" onclick="edit(\'' + row.goodsId + '\')"><i class="fa fa-edit"></i></a> ');
-                    actions.push('<a class="btn btn-warning btn-sm ' + removeFlag + '" href="#" title="删除" onclick="remove(\'' + row.goodsId + '\')"><i class="fa fa-remove"></i></a> ');
-                    actions.push('<a class="btn btn-success btn-sm ' + upFrameFlag + '"  href="#" title="上架" onclick="upframe(\'' + row.goodsId + '\')"><i class="fa fa-key"></i></a>');
+                    actions.push('<a class="btn btn-primary btn-sm ' + editFlag + '" href="#" title="编辑" onclick="edit(\'' + row.id + '\')"><i class="fa fa-edit"></i></a> ');
+                    actions.push('<a class="btn btn-warning btn-sm ' + removeFlag + '" href="#" title="删除" onclick="remove(\'' + row.id + '\')"><i class="fa fa-remove"></i></a> ');
+                    actions.push('<a class="btn btn-success btn-sm ' + upFrameFlag + '"  href="#" title="上架" onclick="upframe(\'' + row.id + '\')"><i class="fa fa-key"></i></a>');
                     return actions.join('');
                 } else if(row.status == '1') {
             		var actions = [];
-                	actions.push('<a class="btn btn-primary btn-sm ' + editFlag + '" href="#" title="编辑" onclick="edit(\'' + row.goodsId + '\')"><i class="fa fa-edit"></i></a> ');
-                	actions.push('<a class="btn btn-warning btn-sm ' + removeFlag + '" href="#" title="删除" onclick="remove(\'' + row.goodsId + '\')"><i class="fa fa-remove"></i></a> ');
-                	actions.push('<a class="btn btn-success btn-sm ' + unFrameFlag + '"  href="#" title="下架" onclick="unframe(\'' + row.goodsId + '\')"><i class="fa fa-key"></i></a>');
+                	actions.push('<a class="btn btn-primary btn-sm ' + editFlag + '" href="#" title="编辑" onclick="edit(\'' + row.id + '\')"><i class="fa fa-edit"></i></a> ');
+                	actions.push('<a class="btn btn-warning btn-sm ' + removeFlag + '" href="#" title="删除" onclick="remove(\'' + row.id + '\')"><i class="fa fa-remove"></i></a> ');
+                	actions.push('<a class="btn btn-success btn-sm ' + unFrameFlag + '"  href="#" title="下架" onclick="unframe(\'' + row.id + '\')"><i class="fa fa-key"></i></a>');
                 	return actions.join('');
 				}else if(row.status == '2') {
                     var actions = [];
-                    actions.push('<a class="btn btn-primary btn-sm ' + editFlag + '" href="#" title="编辑" onclick="edit(\'' + row.goodsId + '\')"><i class="fa fa-edit"></i></a> ');
-                    actions.push('<a class="btn btn-warning btn-sm ' + removeFlag + '" href="#" title="删除" onclick="remove(\'' + row.goodsId + '\')"><i class="fa fa-remove"></i></a> ');
-                    actions.push('<a class="btn btn-success btn-sm ' + upFrameFlag + '"  href="#" title="上架" onclick="upframe(\'' + row.goodsId + '\')"><i class="fa fa-key"></i></a>');
+                    actions.push('<a class="btn btn-primary btn-sm ' + editFlag + '" href="#" title="编辑" onclick="edit(\'' + row.id + '\')"><i class="fa fa-edit"></i></a> ');
+                    actions.push('<a class="btn btn-warning btn-sm ' + removeFlag + '" href="#" title="删除" onclick="remove(\'' + row.id + '\')"><i class="fa fa-remove"></i></a> ');
+                    actions.push('<a class="btn btn-success btn-sm ' + upFrameFlag + '"  href="#" title="上架" onclick="upframe(\'' + row.id + '\')"><i class="fa fa-key"></i></a>');
                     return actions.join('');
                 } else {
 					return "";
