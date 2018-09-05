@@ -5,6 +5,12 @@
 <link href="/ajax/libs/iCheck/custom.css" th:href="@{/ajax/libs/iCheck/custom.css}" rel="stylesheet"/>
 <link href="/ajax/libs/select/select2.css" th:href="@{/ajax/libs/select/select2.css}" rel="stylesheet"/>
 <link href="/xshop/css/xshop.css" th:href="@{/xshop/css/xshop.css}" rel="stylesheet"/>
+
+<link href="/css/animate.css" th:href="@{/css/animate.css}" rel="stylesheet"/>
+<link href="/css/font-awesome.min.css" th:href="@{/css/font-awesome.css}" rel="stylesheet"/>
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+<link href="/css/plugins/summernote/summernote-bs3.css" th:href="@{/css/plugins/summernote/summernote-bs3.css}" rel="stylesheet"/>
+<link href="/css/plugins/dataTables/dataTables.bootstrap.css" th:href="@{/css/plugins/dataTables/dataTables.bootstrap.css}" rel="stylesheet"/>
 <body class="white-bg">
 	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
 		<form class="form-horizontal m" id="form-goods-edit">
@@ -138,7 +144,7 @@
 				<label class="col-sm-3 control-label">商品详情：</label>
 				<input type="hidden" id="goodsDesc" name="goodsDesc" >
 				<div class="ibox-content no-padding">
-					<div class="summernote" id="summernote" name="summernote" th:text="${goods.goodsDesc}">
+					<div class="summernote" id="summernote" name="summernote">
 
 					</div>
 				</div>
@@ -153,12 +159,39 @@
 		</form>
 	</div>
 	<div th:include="include::footer"></div>
-	<script src="/xshop/system/goods/edit.js" th:src="@{/xshop/system/goods/edit.js}">
+	<script src="/xshop/system/goods/edit.js" th:src="@{/xshop/cms/goods/edit.js}">
 	</script>
 	<script src="/ajax/libs/iCheck/icheck.min.js" th:src="@{/ajax/libs/iCheck/icheck.min.js}"></script>
 	<script src="/ajax/libs/select/select2.js" th:src="@{/ajax/libs/select/select2.js}"></script>
+    <script src="/js/plugins/summernote/summernote.js" th:src="@{/js/plugins/summernote/summernote.js}"></script>
+    <script src="/js/plugins/summernote/summernote-zh-CN.js" th:src="@{/js/plugins/summernote/summernote-zh-CN.js}"></script>
+    <script src="/js/plugins/summernote/init-qiniu.js" th:src="@{/js/plugins/summernote/init-qiniu.js}"></script>
+    <script src="/js/plugins/dataTables/jquery.dataTables.js" th:src="@{/js/plugins/dataTables/jquery.dataTables.js}"></script>
+    <script src="/js/plugins/dataTables/dataTables.bootstrap.js" th:src="@{/js/plugins/dataTables/dataTables.bootstrap.js}"></script>
+    <script src="/js/content.min.js" th:src="@{/js/content.min.js}"></script>
 	<script>
-        $(document).ready(function(){$(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",})});
+        $(document).ready(function(){
+            $(".i-checks").iCheck({
+                checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",
+            })
+
+            var goodsDesc = [[${goods.goodsDesc}]];
+            $('#summernote').summernote('code',goodsDesc);
+        });
+
+        function fnClickAddRow(){
+            var index = $("#editable").find("tr").length-1;
+            $("#editable").dataTable().fnAddData([
+                '<input type="text" style="width: 70px" id="goodsSpec['+index+'].norm" name="goodsSpec['+index+'].norm" >',
+                '<input type="text" style="width: 70px" id="goodsSpec['+index+'].size" name="goodsSpec['+index+'].size" >',
+                '<input type="text" style="width: 70px" id="goodsSpec['+index+'].num" name="goodsSpec['+index+'].num" >',
+                '<input type="text" style="width: 70px" id="goodsSpec['+index+'].styleNum" name="goodsSpec['+index+'].styleNum" >',
+                '<input type="text" style="width: 70px" id="goodsSpec['+index+'].barcode" name="goodsSpec['+index+'].barcode" >',
+                '<input type="hidden" id="goodsSpec['+index+'].img" name="goodsSpec['+index+'].img" >' +
+                '<img src="/img/webuploader.png" width="auto" height="70px" id = "specPic'+index+'">',
+                '<input class="file-input qiniuUp" style="width: 70px" type="file" id="specFile'+index+'" inputId="goodsSpec['+index+'].img" imgId="specPic'+index+'" text="规格图"  onchange="qiniuUpImg(this)"/>'
+            ])
+        };
     </script>
 </body>
 </html>
