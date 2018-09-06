@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper  namespace="com.xshop.project.cms.mapper.CarMapper">
+    <sql id="table_columns">
+        id ,
+        user_id as userId,
+        goods_id as goodsId,
+        goods_name as goodsName,
+        img,
+        spec_id as specId,
+        goods_spec as goodsSpec,
+        num,
+        old_price as oldPrice,
+        price,
+        create_time as createTime,
+        update_time as updateTime
+    </sql>
+
+
+    <!--获取最新上架的10商品列表-->
+    <select id="getOrderShopcarList" resultType="com.xshop.project.cms.model.Shopcar">
+        SELECT
+        <include refid="table_columns"/>
+        FROM t_shopcar
+        where user_id = #{userId} and id in (
+        <foreach collection="carIds" item="id" separator=",">
+            #{id}
+        </foreach>
+        )
+    </select>
+</mapper>

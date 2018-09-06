@@ -14,6 +14,6 @@ public class XshopCmsApplication {
 	public static void main(String[] args)
 	{
 		SpringApplication.run(com.xshop.XshopCmsApplication.class, args);
-		System.out.println("(♥◠‿◠)ﾉﾞ  XShop 启动成功   ლ(´ڡ`ლ)ﾞ");
+		System.out.println("  XShop 启动成功    ");
 	}
 }

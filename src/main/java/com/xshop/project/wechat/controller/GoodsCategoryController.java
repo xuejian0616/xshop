@@ -22,7 +22,7 @@ public class GoodsCategoryController {
     @Autowired
     private GoodsCategoryService goodsCategoryService;
 
-    @ApiOperation(value = "获取服装的二级分类", notes = "获取服装的二级分类",httpMethod = "get")
+    @ApiOperation(value = "获取服装的二级分类", notes = "获取服装的二级分类",httpMethod = "GET")
     @GetMapping(value = "/getSubCategoryList")
     public List<GoodsCategoryVO> getGoodsSubCategory(){
 

@@ -6,6 +6,11 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * @author: xshop
+ *
+ * @Date：Created on 2018/9/5 18:30.
+ */
 @Table(name = "t_shopcar")
 @Data
 public class Shopcar {
@@ -24,12 +29,15 @@ public class Shopcar {
   @ApiModelProperty(value = "商品名")
   @Column(name = "goods_name")
   private String goodsName;
+  @ApiModelProperty(value = "商品图片")
+  @Column(name = "img")
+  private String img;
   @ApiModelProperty(value = "规则id")
-  @Column(name = "param_id")
-  private Integer paramId;
+  @Column(name = "spec_id")
+  private Integer specId;
   @ApiModelProperty(value = "商品规则")
-  @Column(name = "goods_param")
-  private String goodsParam;
+  @Column(name = "goods_spec")
+  private String goodsSpec;
   @ApiModelProperty(value = "数量")
   @Column(name = "num")
   private Integer num;
