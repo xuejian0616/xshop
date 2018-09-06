@@ -13,6 +13,9 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
  */
 @Configuration
 public class BeanConfig {
+    //cpu大致线程数
+    private final int poolsize = Runtime.getRuntime().availableProcessors() * 2 ;
+
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
@@ -22,5 +25,5 @@ public class BeanConfig {
 
     @Bean( name = "myScheduledThreadPoolExecutor")
     public ScheduledThreadPoolExecutor ScheduledThreadPoolExecutorConfig(){
-        return new ScheduledThreadPoolExecutor(10) ;
+        return new ScheduledThreadPoolExecutor(poolsize) ;
     }}
