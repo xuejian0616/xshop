@@ -175,8 +175,9 @@
                 checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",
             })
 
-            var goodsDesc = [[${goods.goodsDesc}]];
-            $('#summernote').summernote('code',goodsDesc);
+
+            // var goodsDesc = [[${goods.goodsDesc}]];
+            // $('#summernote').val(HtmlUtil.htmlDecodeByRegExp(goodsDesc));
         });
 
         function fnClickAddRow(){
@@ -192,6 +193,7 @@
                 '<input class="file-input qiniuUp" style="width: 70px" type="file" id="specFile'+index+'" inputId="goodsSpec['+index+'].img" imgId="specPic'+index+'" text="规格图"  onchange="qiniuUpImg(this)"/>'
             ])
         };
-    </script>
+
+	</script>
 </body>
 </html>
