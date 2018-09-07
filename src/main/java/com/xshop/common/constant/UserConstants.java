@@ -70,7 +70,8 @@ public class UserConstants
     /**
      * 手机号码格式限制
      */
-    public static final String MOBILE_PHONE_NUMBER_PATTERN = "^0{0,1}(13[0-9]|15[0-9]|14[0-9]|18[0-9])[0-9]{8}$";
+//    public static final String MOBILE_PHONE_NUMBER_PATTERN = "^0{0,1}(13[0-9]|15[0-9]|14[0-9]|18[0-9])[0-9]{8}$";
+    public static final String MOBILE_PHONE_NUMBER_PATTERN = "^((1[358][0-9])|(14[57])|(17[0678])|(19[7]))\\d{8}$";
     
     /**
      * 邮箱格式限制

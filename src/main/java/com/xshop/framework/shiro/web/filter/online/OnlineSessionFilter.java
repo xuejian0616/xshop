@@ -41,13 +41,6 @@ public class OnlineSessionFilter extends AccessControlFilter {
      */
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
-        HttpServletRequest httpServletRequest = (HttpServletRequest)request;
-        String uri = httpServletRequest.getRequestURI();
-        logger.info("--------uri--------" + uri);
-        if(uri.contains("/wx/")){
-            return true;
-        }
-
         Subject subject = getSubject(request, response);
         if (subject == null || subject.getSession() == null) {
             return true;

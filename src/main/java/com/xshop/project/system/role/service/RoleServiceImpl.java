@@ -1,10 +1,7 @@
 package com.xshop.project.system.role.service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.xshop.common.constant.UserConstants;
@@ -208,7 +205,7 @@ public class RoleServiceImpl implements IRoleService
         }
         Long roleId = role.getRoleId();
         Role info = roleMapper.checkRoleNameUnique(role.getRoleName());
-        if (StringUtils.isNotNull(info) && StringUtils.isNotNull(info.getRoleId()) && info.getRoleId() != roleId)
+        if (StringUtils.isNotNull(info) && StringUtils.isNotNull(info.getRoleId()) && Objects.equals(info.getRoleId(), roleId))
         {
             return UserConstants.ROLE_NAME_NOT_UNIQUE;
         }

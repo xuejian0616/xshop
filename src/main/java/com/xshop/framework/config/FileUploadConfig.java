@@ -10,8 +10,7 @@ import javax.servlet.MultipartConfigElement;
 @Configuration
 public class FileUploadConfig {
 	/**
-	 * 文件上传配置
-	 *
+	 * 七牛文件上传配置
 	 * @return MultipartConfigElement
 	 */
 	@Bean

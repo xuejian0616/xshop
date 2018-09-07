@@ -98,8 +98,7 @@ public class BaseException extends RuntimeException
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return this.getClass() + "{" + "module='" + module + '\'' + ", message='" + getMessage() + '\'' + '}';
     }
 }

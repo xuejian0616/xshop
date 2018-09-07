@@ -8,8 +8,7 @@ import lombok.Data;
  * @author xshop
  */
 @Data
-public class RoleMenu
-{
+public class RoleMenu {
     /** 角色ID */
     private Long roleId;
     /** 菜单ID */

@@ -9,8 +9,7 @@ import lombok.Data;
  * @author xshop
  */
 @Data
-public class Role extends BaseEntity
-{
+public class Role extends BaseEntity {
     private static final long serialVersionUID = 1L;
     /** 角色ID */
     private Long roleId;

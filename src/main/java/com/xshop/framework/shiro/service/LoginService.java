@@ -20,12 +20,11 @@ import com.xshop.project.system.user.service.IUserService;
 
 /**
  * 登录校验方法
- * 
+ *
  * @author xshop
  */
 @Component
-public class LoginService
-{
+public class LoginService {
     @Autowired
     private PasswordService passwordService;
 
@@ -35,32 +34,27 @@ public class LoginService
     /**
      * 登录
      */
-    public User login(String username, String password)
-    {
+    public User login(String username, String password) {
         // 验证码校验
-        if (!StringUtils.isEmpty(ServletUtils.getStrAttribute(ShiroConstants.CURRENT_CAPTCHA)))
-        {
+        if (!StringUtils.isEmpty(ServletUtils.getStrAttribute(ShiroConstants.CURRENT_CAPTCHA))) {
             SystemLogUtils.log(username, CommonConstant.LOGIN_FAIL, MessageUtils.message("user.jcaptcha.error"));
             throw new CaptchaException();
         }
         // 用户名或密码为空 错误
-        if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password))
-        {
+        if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
             SystemLogUtils.log(username, CommonConstant.LOGIN_FAIL, MessageUtils.message("not.null"));
             throw new UserNotExistsException();
         }
         // 密码如果不在指定范围内 错误
         if (password.length() < UserConstants.PASSWORD_MIN_LENGTH
-                || password.length() > UserConstants.PASSWORD_MAX_LENGTH)
-        {
+                || password.length() > UserConstants.PASSWORD_MAX_LENGTH) {
             SystemLogUtils.log(username, CommonConstant.LOGIN_FAIL, MessageUtils.message("user.password.not.match"));
             throw new UserPasswordNotMatchException();
         }
 
         // 用户名不在指定范围内 错误
         if (username.length() < UserConstants.USERNAME_MIN_LENGTH
-                || username.length() > UserConstants.USERNAME_MAX_LENGTH)
-        {
+                || username.length() > UserConstants.USERNAME_MAX_LENGTH) {
             SystemLogUtils.log(username, CommonConstant.LOGIN_FAIL, MessageUtils.message("user.password.not.match"));
             throw new UserPasswordNotMatchException();
         }
@@ -68,26 +62,22 @@ public class LoginService
         // 查询用户信息
         User user = userService.selectUserByLoginName(username);
 
-        if (user == null && maybeMobilePhoneNumber(username))
-        {
+        if (user == null && maybeMobilePhoneNumber(username)) {
             user = userService.selectUserByPhoneNumber(username);
         }
 
-        if (user == null && maybeEmail(username))
-        {
+        if (user == null && maybeEmail(username)) {
             user = userService.selectUserByEmail(username);
         }
 
-        if (user == null)
-        {
+        if (user == null) {
             SystemLogUtils.log(username, CommonConstant.LOGIN_FAIL, MessageUtils.message("user.not.exists"));
             throw new UserNotExistsException();
         }
 
         passwordService.validate(user, password);
 
-        if (UserConstants.USER_BLOCKED == user.getStatus())
-        {
+        if (UserConstants.USER_BLOCKED == user.getStatus()) {
             SystemLogUtils.log(username, CommonConstant.LOGIN_FAIL, MessageUtils.message("user.blocked", user.getRefuseDes()));
             throw new UserBlockedException(user.getRefuseDes());
         }
@@ -96,19 +86,15 @@ public class LoginService
         return user;
     }
 
-    private boolean maybeEmail(String username)
-    {
-        if (!username.matches(UserConstants.EMAIL_PATTERN))
-        {
+    private boolean maybeEmail(String username) {
+        if (!username.matches(UserConstants.EMAIL_PATTERN)) {
             return false;
         }
         return true;
     }
 
-    private boolean maybeMobilePhoneNumber(String username)
-    {
-        if (!username.matches(UserConstants.MOBILE_PHONE_NUMBER_PATTERN))
-        {
+    private boolean maybeMobilePhoneNumber(String username) {
+        if (!username.matches(UserConstants.MOBILE_PHONE_NUMBER_PATTERN)) {
             return false;
         }
         return true;
@@ -117,8 +103,7 @@ public class LoginService
     /**
      * 记录登录信息
      */
-    public void recordLoginInfo(User user)
-    {
+    public void recordLoginInfo(User user) {
         user.setLoginIp(ShiroUtils.getIp());
         user.setLoginDate(DateUtils.getNowDate());
         userService.updateUser(user);

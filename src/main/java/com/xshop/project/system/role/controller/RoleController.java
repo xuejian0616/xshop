@@ -26,8 +26,7 @@ import com.xshop.project.system.role.service.IRoleService;
  */
 @Controller
 @RequestMapping("/system/role")
-public class RoleController extends BaseController
-{
+public class RoleController extends BaseController {
 
     private String prefix = "system/role";
 
@@ -44,8 +43,7 @@ public class RoleController extends BaseController
     @RequiresPermissions("system:role:list")
     @GetMapping("/list")
     @ResponseBody
-    public TableDataInfo list(Role role)
-    {
+    public TableDataInfo list(Role role) {
         startPage();
         List<Role> list = roleService.selectRoleList(role);
         return getDataTable(list);
@@ -68,8 +66,7 @@ public class RoleController extends BaseController
     @RequiresPermissions("system:role:edit")
     @Log(title = "系统管理", action = "角色管理-修改角色")
     @GetMapping("/edit/{roleId}")
-    public String edit(@PathVariable("roleId") Long roleId, Model model)
-    {
+    public String edit(@PathVariable("roleId") Long roleId, Model model) {
         Role role = roleService.selectRoleById(roleId);
         model.addAttribute("role", role);
         return prefix + "/edit";
@@ -83,8 +80,7 @@ public class RoleController extends BaseController
     @PostMapping("/save")
     @Transactional(rollbackFor=Exception.class)
     @ResponseBody
-    public Message save(Role role)
-    {
+    public Message save(Role role) {
         if (roleService.saveRole(role) > 0)
         {
             return Message.success();
@@ -97,8 +93,7 @@ public class RoleController extends BaseController
     @RequestMapping("/remove/{roleId}")
     @Transactional(rollbackFor=Exception.class)
     @ResponseBody
-    public Message remove(@PathVariable("roleId") Long roleId)
-    {
+    public Message remove(@PathVariable("roleId") Long roleId) {
         Role role = roleService.selectRoleById(roleId);
         if (role == null)
         {
@@ -119,8 +114,7 @@ public class RoleController extends BaseController
     @Log(title = "系统管理", action = "角色管理-批量删除")
     @PostMapping("/batchRemove")
     @ResponseBody
-    public Message batchRemove(@RequestParam("ids[]") Long[] ids)
-    {
+    public Message batchRemove(@RequestParam("ids[]") Long[] ids) {
         int rows = roleService.batchDeleteRole(ids);
         if (rows > 0)
         {
@@ -134,8 +128,7 @@ public class RoleController extends BaseController
      */
     @PostMapping("/checkRoleNameUnique")
     @ResponseBody
-    public String checkRoleNameUnique(Role role)
-    {
+    public String checkRoleNameUnique(Role role) {
         String uniqueFlag = "0";
         if (role != null)
         {
