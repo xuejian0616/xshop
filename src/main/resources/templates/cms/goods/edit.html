@@ -169,15 +169,15 @@
     <script src="/js/plugins/dataTables/jquery.dataTables.js" th:src="@{/js/plugins/dataTables/jquery.dataTables.js}"></script>
     <script src="/js/plugins/dataTables/dataTables.bootstrap.js" th:src="@{/js/plugins/dataTables/dataTables.bootstrap.js}"></script>
     <script src="/js/content.min.js" th:src="@{/js/content.min.js}"></script>
-	<script>
+
+	<script th:inline="javascript">
         $(document).ready(function(){
             $(".i-checks").iCheck({
                 checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",
             })
 
-
-            // var goodsDesc = [[${goods.goodsDesc}]];
-            // $('#summernote').val(HtmlUtil.htmlDecodeByRegExp(goodsDesc));
+            var goodsDesc = [[${goods.goodsDesc}]];
+            $('#summernote').summernote('code',goodsDesc);
         });
 
         function fnClickAddRow(){
